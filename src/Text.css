@@ -1,0 +1,21 @@
+.TextContainer {
+  text-align: center;
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  margin-left: 0px;
+  margin-bottom: 2em;
+  margin-right: 0px;
+  margin-top: 0px;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+.Text {
+  display: inline-block;
+  text-align: left;
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  width: 80%;
+  min-height: 2em;
+}
