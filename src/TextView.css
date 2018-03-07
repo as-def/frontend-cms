@@ -1,0 +1,22 @@
+.TextView {
+  display: inline-block;
+  width: 80%;
+  min-height: 2em;
+  text-align: left;
+  padding: 0px;
+  margin: 0px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  overflow: auto;
+  line-height:1.2em;
+}
+.TextView > p{
+  margin-top: 0px;
+  margin-bottom: 0.0em;
+  min-height: 1.2em;
+  line-height:1.2em;
+}
+.TextView-edit {
+  border-style: dotted;
+}

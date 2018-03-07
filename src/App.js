@@ -20,6 +20,7 @@ class App extends Component {
 
   render() {
     let showedit = this.state.editmode;
+    let text = "Hello\nthere";
     let view = (
       <div className="App">
         <div>
@@ -33,7 +34,7 @@ class App extends Component {
         </header>
         <p className="App-intro">
         </p>
-        <Text editmode={showedit} text="Hello<br/><br/>there" editing="true"/>
+        <Text editmode={showedit} text={text} editing="true"/>
         <Text editmode={showedit} text="hello, hello"/>
       </div>
     );

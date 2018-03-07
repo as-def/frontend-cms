@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Text.css';
+import TextView from './TextView.js';
 
 class Text extends Component {
   constructor(props) {
@@ -14,17 +15,14 @@ class Text extends Component {
   }
   
   componentDidMount() {
-    this.textView.innerHTML = this.state.text;
+    //this.textView.innerHTML = this.state.text;
   }
 
   toggleEdit() {
     let newState = {editing: !this.state.editing};
     // switch to display
     if(this.state.editing) {
-       //newState.text = this.textEdit.value.replace(/\n/g, '<br/>');
-       newState.text = this.textView.innerHTML;
-      // this.textView.style.width = this.textEdit.clientWidth + 'px';
-      // this.textView.style.height = this.textEdit.clientHeight + 'px';
+       //newState.text = this.textView.innerHTML;
     }
     // switch to edit
     this.setState(newState);
@@ -36,12 +34,9 @@ class Text extends Component {
           style={{
               borderStyle: this.props.editmode ? 'none': 'none'
           }}>
-        <div className="TextView" contentEditable={this.state.editing && this.props.editmode}
-            ref={(textView) => {this.textView = textView;}}
-            style={{
-            }}
-        >
-        </div>
+
+        <TextView editable={this.state.editing && this.props.editmode} text={this.state.text}/>
+
         <div className="TextControls"
             style={{
               display: (this.props.editmode) ? 'block':'none'
