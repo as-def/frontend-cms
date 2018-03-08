@@ -6,7 +6,6 @@ class Text extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: [].concat(this.props.text),
       editing: this.props.editing
     };
   }
@@ -15,16 +14,13 @@ class Text extends Component {
   }
   
   componentDidMount() {
-    //this.textView.innerHTML = this.state.text;
   }
 
   toggleEdit() {
-    let newState = {editing: !this.state.editing};
-    // switch to display
     if(this.state.editing) {
-       //newState.text = this.textView.innerHTML;
+      this.props.updateText(this.props.idx, this.textView.getText());
     }
-    // switch to edit
+    let newState = {editing: !this.state.editing};
     this.setState(newState);
   }
 
@@ -35,16 +31,17 @@ class Text extends Component {
               borderStyle: this.props.editmode ? 'none': 'none'
           }}>
 
-        <TextView editable={this.state.editing && this.props.editmode} text={this.state.text}/>
+          <TextView editable={this.state.editing && this.props.editmode}
+              ref={(textView) => {this.textView = textView;}}
+              text={this.props.text}/>
 
-        <div className="TextControls"
-            style={{
-              display: (this.props.editmode) ? 'block':'none'
-            }}
-        >
-          <button onClick={this.toggleEdit.bind(this)}>
-            {this.state.editing ? 'Save' : 'Edit'}
-          </button>
+          <div className="TextControls"
+              style={{
+                display: (this.props.editmode) ? 'block':'none'
+              }}>
+            <button onClick={this.toggleEdit.bind(this)}>
+              {this.state.editing ? 'Save' : 'Edit'}
+            </button>
         </div>
       </div>
     );

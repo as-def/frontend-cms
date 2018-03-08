@@ -4,9 +4,15 @@ import './TextView.css';
 class TextView extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {text: this.props.text};
   }
   componentWillMount() {
+  }
+  componentDidMount() {
+    this.textdiv.innerHTML = this.props.text;
+  }
+  getText() {
+    return this.textdiv.innerHTML;
   }
   render() {
     let classes = "TextView";
@@ -15,7 +21,7 @@ class TextView extends Component {
     }
     let view = 
         <div className={classes} contentEditable={this.props.editable}
-            ref={(textView) => {this.textView = textView;}}
+            ref={(div) => {this.textdiv = div;}}
             style={{
             }}
         >
