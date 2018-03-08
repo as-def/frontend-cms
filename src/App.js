@@ -53,6 +53,10 @@ class App extends Component {
     window.location.pathname='/';
   }
 
+  discard() {
+    window.location.pathname='/';
+  }
+
   render() {
     let self = this;
     let edit = (window.location.pathname === '/edit');
@@ -66,8 +70,12 @@ class App extends Component {
                     style={{marginRight: "0.5em"}}>
                 {this.state.editmode ? "Preview" : "Edit"}
             </button>
-            <button onClick={this.save.bind(this)}>
+            <button onClick={this.save.bind(this)}
+                    style={{marginRight: "0.5em"}}>
                 Save
+            </button>
+            <button onClick={this.discard.bind(this)}>
+                Discard
             </button>
         </div>
         <header className="App-header">
