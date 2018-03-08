@@ -19,7 +19,9 @@ class App extends Component {
     catch(e) {
     }
     this.state.texts = savedState.texts || this.state.texts;
-    this.textComponents = [];
+    this.state.texts.forEach(function(text) {
+      text.uid = App.counter++;
+    });
   }
 
   componentWillMount() {
@@ -35,7 +37,7 @@ class App extends Component {
 
   updateText(idx, text) {
     let texts = this.state.texts;
-    texts[idx] = {text: text};
+    texts[idx].text = text;
     this.setState({texts: texts});
   }
 
@@ -55,6 +57,39 @@ class App extends Component {
 
   discard() {
     window.location.pathname='/';
+  }
+
+  newText(pos) {
+    let texts = this.state.texts;
+    if(pos <= this.state.texts.length && pos >= 0) {
+      let nt = {text:'...', uid: App.counter++};
+      texts.splice(pos, 0, nt); 
+    }
+    this.setState({texts: texts});
+  }
+
+  // bool down: if not up then down
+  move(fromidx, down) {
+    let texts = this.state.texts;
+    if(down) {
+      if (fromidx < (texts.length - 1)) {
+        let toidx = fromidx + 1;
+        let from = texts[fromidx];
+        let to = texts[toidx];
+        texts[fromidx] = to;
+        texts[toidx] = from
+      }
+    }
+    else {
+      if(fromidx > 0) {
+        let toidx = fromidx - 1;
+        let from = texts[fromidx];
+        let to = texts[toidx];
+        texts[fromidx] = to;
+        texts[toidx] = from
+      }
+    }
+    this.setState({texts: texts});
   }
 
   render() {
@@ -81,14 +116,17 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">frontend cms</h1>
         </header>
-        {this.state.texts.map(function(text, idx) {
+        {this.state.texts.map(function(text, id) {
           let comp =
             <Text editmode={showedit}
                 text={text.text}
-                idx={idx}
-                key={idx}
+                idx={id}
+                key={text.uid}
                 updateText={self.updateText.bind(self)}
-                editing="false"/>;
+                editing="false"
+                move={self.move.bind(self)}
+                add={self.newText.bind(self)}
+            />;
           return comp;
         })}
       </div>
@@ -96,5 +134,6 @@ class App extends Component {
     return view;
   }
 }
+App.counter = 0;
 
 export default App;
