@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Text from './Text.js'
 
@@ -7,13 +6,26 @@ class App extends Component {
   constructor(props) {
     super(props);
     let texts = [{text: 'Hello<br/>there'}, {text: 'hello, hello'}]
-    this.state = {};
+
+    // define default state in case local storage is empty
+    this.state = {}
     this.state.editmode = true;
     this.state.texts = texts;
+
+    let savedState = {};
+    try {
+      savedState = JSON.parse(localStorage.getItem('appState'));
+    }
+    catch(e) {
+    }
+    this.state.texts = savedState.texts || this.state.texts;
     this.textComponents = [];
   }
 
   componentWillMount() {
+  }
+  
+  componentDidMount() {
   }
 
   toggleEdit() {
@@ -35,17 +47,21 @@ class App extends Component {
         text: text.text
       });
     });
+    localStorage.setItem('appState', JSON.stringify(this.state));
     console.log('Persistence data:');
     console.log(persistence);
+    window.location.pathname='/';
   }
 
   render() {
     let self = this;
-    let showedit = this.state.editmode;
+    let edit = (window.location.pathname === '/edit');
+    let showedit = this.state.editmode && edit;
 
     let view = (
       <div className="App">
-        <div className="App-controls">
+        <div className="App-controls"
+             style={{display: edit ? 'block' : 'none'}}>
             <button onClick={this.toggleEdit.bind(this)}
                     style={{marginRight: "0.5em"}}>
                 {this.state.editmode ? "Preview" : "Edit"}
