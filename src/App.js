@@ -45,8 +45,9 @@ class App extends Component {
 
     let view = (
       <div className="App">
-        <div>
-            <button onClick={this.toggleEdit.bind(this)}>
+        <div className="App-controls">
+            <button onClick={this.toggleEdit.bind(this)}
+                    style={{marginRight: "0.5em"}}>
                 {this.state.editmode ? "Preview" : "Edit"}
             </button>
             <button onClick={this.save.bind(this)}>
@@ -54,8 +55,7 @@ class App extends Component {
             </button>
         </div>
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">frontend cms</h1>
         </header>
         {this.state.texts.map(function(text, idx) {
           let comp =
