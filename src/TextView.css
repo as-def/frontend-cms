@@ -1,7 +1,7 @@
 .TextView {
   display: inline-block;
   width: 80%;
-  min-height: 2em;
+  min-height: 1em;
   text-align: left;
   padding: 0px;
   margin: 0px;
@@ -18,5 +18,4 @@
   line-height:1.2em;
 }
 .TextView-edit {
-  border-style: dotted;
 }

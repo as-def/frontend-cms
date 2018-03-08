@@ -22,6 +22,7 @@ class TextView extends Component {
     let view = 
         <div className={classes} contentEditable={this.props.editable}
             ref={(div) => {this.textdiv = div;}}
+            onInput={this.props.save}
             style={{
             }}
         >
