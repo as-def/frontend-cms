@@ -4,12 +4,14 @@
   border-style: solid;
   border-color: black;
   margin-left: 0px;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
   margin-right: 0px;
-  margin-top: 0px;
-  padding-top: 1em;
-  padding-bottom: 1em;
+  margin-top: 0.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
 }
 .TextControls {
   margin-top: 1em;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }

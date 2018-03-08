@@ -28,7 +28,7 @@ class Text extends Component {
     let view = (
       <div className="TextContainer"
           style={{
-              borderStyle: this.props.editmode ? 'none': 'none'
+              borderStyle: this.props.editmode ? 'solid': 'none'
           }}>
 
           <TextView editable={this.state.editing && this.props.editmode}
